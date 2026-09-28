@@ -220,7 +220,7 @@ void *os_memdup(const void *src, size_t len)
 void *os_malloc(size_t size)
 {
 #if defined(CONFIG_WIFI_NM_WPA_SUPPLICANT_GLOBAL_HEAP)
-	return k_malloc(size);
+	return malloc(size);
 #else
 	return sys_heap_noalign_alloc(&wifi_nm_wpa_supplicant_mem_pool.heap, 0, size);
 #endif /* CONFIG_WIFI_NM_WPA_SUPPLICANT_GLOBAL_HEAP */
@@ -230,7 +230,7 @@ void os_free(void *ptr)
 {
 	if (ptr) {
 #if defined(CONFIG_WIFI_NM_WPA_SUPPLICANT_GLOBAL_HEAP)
-		k_free(ptr);
+		free(ptr);
 #else
 		k_heap_free(&wifi_nm_wpa_supplicant_mem_pool, ptr);
 #endif /* CONFIG_WIFI_NM_WPA_SUPPLICANT_GLOBAL_HEAP */
